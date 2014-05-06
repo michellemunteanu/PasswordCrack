@@ -26,7 +26,7 @@ char *crack(char *hash, char *dict[])
     while (dict[i])
     {
         if (tryguess(hash, dict[i])) return dict[i];
-	    i++;
+        i++;
     }
     return NULL;
 }
@@ -38,7 +38,7 @@ char *crack(char *hash, char *dict[])
 char **read_file(char *fname)
 {
     // Pointer to array of character pointers (strings)
-	char **dict;
+    char **dict;
 
     printf("Reading %s\n", fname);
     FILE *d = fopen(fname, "r");
@@ -64,7 +64,7 @@ int main(int argc, char *argv[])
     if (argc < 2) 
     {
         printf("Usage: %s hash_file dict_file\n", argv[0]);
-	    exit(1);
+        exit(1);
     }
 
     char **dictionary = read_file(argv[2]);
