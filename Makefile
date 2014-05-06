@@ -1,6 +1,6 @@
 CC=clang
-NUM_HASHES=20
-ROCKYOU=rockyou1000.txt
+NUM_HASHES=100
+ROCKYOU=rockyou2000.txt
 
 all: crack hashpass
 
@@ -14,7 +14,7 @@ hashpass: hashpass.c md5crypt.o
 	$(CC) hashpass.c md5crypt.o -o hashpass -l ssl -l readline
 
 clean:
-	rm -f *.o crack
+	rm -f *.o crack hashpass
 
 hashes: hashpass
 	shuf -n $(NUM_HASHES) $(ROCKYOU) > passwords.txt

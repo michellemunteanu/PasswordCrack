@@ -6,7 +6,7 @@
 
 #include "crypt.h"
 
-// Compile with: clang mkpasswd.c md5crypt.c -o mkpasswd -l readline -l ssl
+// Compile with: clang hashpass.c md5crypt.c -o hashpass -l ssl
 
 char *mksalt()
 {
