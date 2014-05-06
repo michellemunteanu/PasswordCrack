@@ -1,6 +1,6 @@
 CC=clang
-NUM_HASHES=100
-ROCKYOU=rockyou2000.txt
+NUM_HASHES=20
+ROCKYOU=rockyou1000.txt
 
 all: crack hashpass
 
