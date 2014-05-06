@@ -11,9 +11,9 @@ int tryguess(char *hash, char *guess)
 {
     // Extract the salt from the hash
 
-	// Hash the guess using the salt
+    // Hash the guess using the salt
 
-	// Compare the two hashes
+    // Compare the two hashes
 
     return 0;
 }
@@ -47,12 +47,12 @@ char **read_file(char *fname)
     // Get the number of lines in the file
 
     // Allocate memory for the array of strings (character pointers)
-	dict = NULL;   // Change this
+    dict = NULL;   // Change this
 
     // Read in the rest of the file, allocting memory for each string
-	// as we go.
+    // as we go.
 
-	// NULL termination. Last entry in the array should be NULL.
+    // NULL termination. Last entry in the array should be NULL.
 
     printf("Done\n");
 
@@ -73,5 +73,5 @@ int main(int argc, char *argv[])
     int i = 0;
 
     // For each hash, try every entry in the dictionary.
-	// Print the matching dictionary entry.
+    // Print the matching dictionary entry.
 }
