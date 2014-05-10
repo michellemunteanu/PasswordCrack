@@ -10,12 +10,16 @@
 int tryguess(char *hash, char *guess)
 {
     // Extract the salt from the hash
+    char salt[9];
+    strncpy(salt,(hash+3),8);
+    salt[8]='\0';
 
     // Hash the guess using the salt
-
+    char *trial = md5crypt(guess, salt);
+    
     // Compare the two hashes
-
-    return 0;
+    
+    return (!strcmp(trial,hash)); //will return 0 if they don't match, nonzero if match
 }
 
 // Given a hash and a dictionary of guesses,
@@ -45,14 +49,22 @@ char **read_file(char *fname)
     if (! d) return NULL;
 
     // Get the number of lines in the file
-
+    int numlines;
+    //char numlines[6];
+    fscanf(d, "%d", &numlines); //**am I going to need that extra space here?
+    //fgets(numlines, sizeof line, fname);
+ 
     // Allocate memory for the array of strings (character pointers)
-    dict = NULL;   // Change this
+    dict = (char **)malloc(((numlines+1)*sizeof(char *)));   // Change this
 
     // Read in the rest of the file, allocting memory for each string
-    // as we go.
+    // as we go. 
+    while(fscanf(d, "%s", ) != EOF) //***
+    {
+	malloc(30*sizeof(char))
+    }
 
-    // NULL termination. Last entry in the array should be NULL.
+    // NULL termination. Last entry in the array should be NULL. *outside loop*
 
     printf("Done\n");
 
