@@ -50,20 +50,23 @@ char **read_file(char *fname)
 
     // Get the number of lines in the file
     int numlines;
-    //char numlines[6];
     fscanf(d, "%d", &numlines); //**am I going to need that extra space here?
-    //fgets(numlines, sizeof line, fname);
+    //fgets(numlines, sizeof(line), fname);
  
     // Allocate memory for the array of strings (character pointers)
-    dict = (char **)malloc(((numlines+1)*sizeof(char *)));   // Change this
+    dict = (char **)malloc(((numlines+1)*sizeof(char *)));
 
     // Read in the rest of the file, allocting memory for each string
     // as we go. 
-    while(fscanf(d, "%s", ) != EOF) //***
+    //while(fscanf(d, "%s", ) != EOF) //***
+    int i=0;
+    while(fgets(, 25, d) != NULL) //***
     {
-	malloc(30*sizeof(char))
+	dict[i] = d;	
+	i++;
+	d = (char *)malloc(30*sizeof(char));
     }
-
+    dict[i]='0';
     // NULL termination. Last entry in the array should be NULL. *outside loop*
 
     printf("Done\n");
