@@ -18,7 +18,6 @@ int tryguess(char *hash, char *guess)
     char *trial = md5crypt(guess, salt);
     
     // Compare the two hashes
-    
     return (!strcmp(trial,hash)); //will return 0 if they don't match, nonzero if match
 }
 
@@ -50,34 +49,24 @@ char **read_file(char *fname)
 
     // Get the number of lines in the file
     int numlines;
-    fscanf(d, "%d ", &numlines); //**am I going to need that extra space here?
-    //fgets(numlines, sizeof(line), fname);
+    fscanf(d, "%d ", &numlines); 
  
     // Allocate memory for the array of strings (character pointers)
     dict = (char **)malloc(((numlines+1)*sizeof(char *)));
 
     // Read in the rest of the file, allocting memory for each string
     // as we go. 
-    //while(fscanf(d, "%s", ) != EOF) //***
     int i=0;
-
     dict[i] = (char *)malloc(30*sizeof(char));
-      //dict[i] = (char *)malloc(30*sizeof(char));
 
-/*    while(fgets(dict[i], sizeof(dict[i]), d) != NULL) //
-    {
-	i++;
-	dict[i] = (char *)malloc(30*sizeof(char));
-    }*/
-    //char temp[30];
     while(i<numlines)
     {
 	fscanf(d, "%s", dict[i]);
-	//dict[i]=temp;
 	i++;
 	dict[i] = (char *)malloc(30*sizeof(char));
+	//need to free() somewhere around here 
     }
-    // NULL termination. Last entry in the array should be NULL. *outside loop*
+    // NULL termination. Last entry in the array should be NULL.
     dict[i]='\0';
 
     printf("Done\n");
@@ -102,6 +91,7 @@ int main(int argc, char *argv[])
     // Print the matching dictionary entry.
     while(hashes[i])
     {
+	printf("%s\t",hashes[i]);
 	printf("%s\n", crack(hashes[i],dictionary));
 	i++;
     }
