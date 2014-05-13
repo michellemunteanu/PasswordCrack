@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <unistd.h>
+#include <wait.h>
 
 #include "crypt.h"
 
@@ -85,14 +87,43 @@ int main(int argc, char *argv[])
     char **dictionary = read_file(argv[2]);
     char **hashes = read_file(argv[1]);
 
-    int i = 0;
-
-    // For each hash, try every entry in the dictionary.
-    // Print the matching dictionary entry.
-    while(hashes[i])
+    pid_t child = fork(); //returns id of child
+    if (child == -1) //returns -1 of there is an error
     {
-	printf("%s\t",hashes[i]);
-	printf("%s\n", crack(hashes[i],dictionary));
-	i++;
+        printf("Forking unsuccessful");
+	exit(4);
+    }
+    int i = 0;
+    int j = 0;
+    if (child > 0)  
+    {
+    //I'm the parent
+    //work on half the array then wait for child to finish
+        while(hashes[i])
+        {
+            if(i%2 == 0) //even
+            {  
+                printf("%s\t",hashes[i]);
+                printf("%s\n", crack(hashes[i],dictionary));
+            }
+            i++;
+        }
+        int status;
+        pid_t child = wait(&status);
+    }
+    else
+    {
+    //I'm child 0
+    //work on half the array
+        while(hashes[j])
+        {
+            if(j%2 != 0) //odd
+            {
+                printf("%s\t",hashes[j]);
+                printf("%s\n", crack(hashes[j],dictionary));
+            }
+            j++;
+        }
+    exit(0);
     }
 }
