@@ -50,7 +50,7 @@ char **read_file(char *fname)
 
     // Get the number of lines in the file
     int numlines;
-    fscanf(d, "%d", &numlines); //**am I going to need that extra space here?
+    fscanf(d, "%d ", &numlines); //**am I going to need that extra space here?
     //fgets(numlines, sizeof(line), fname);
  
     // Allocate memory for the array of strings (character pointers)
@@ -60,9 +60,20 @@ char **read_file(char *fname)
     // as we go. 
     //while(fscanf(d, "%s", ) != EOF) //***
     int i=0;
+
     dict[i] = (char *)malloc(30*sizeof(char));
-    while(fgets(dict[i], 30, d) != NULL) //***that 30 needs to be fixed...
+      //dict[i] = (char *)malloc(30*sizeof(char));
+
+/*    while(fgets(dict[i], sizeof(dict[i]), d) != NULL) //
     {
+	i++;
+	dict[i] = (char *)malloc(30*sizeof(char));
+    }*/
+    //char temp[30];
+    while(i<numlines)
+    {
+	fscanf(d, "%s", dict[i]);
+	//dict[i]=temp;
 	i++;
 	dict[i] = (char *)malloc(30*sizeof(char));
     }
@@ -89,10 +100,9 @@ int main(int argc, char *argv[])
 
     // For each hash, try every entry in the dictionary.
     // Print the matching dictionary entry.
-    while(i<4)
+    while(hashes[i])
     {
-	char *m=crack(hashes[i],&dictionary[i]);
-	printf("%s", m[i]);
+	printf("%s\n", crack(hashes[i],dictionary));
 	i++;
     }
 }
