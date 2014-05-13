@@ -60,14 +60,14 @@ char **read_file(char *fname)
     // as we go. 
     //while(fscanf(d, "%s", ) != EOF) //***
     int i=0;
-    while(fgets(, 25, d) != NULL) //***
+    dict[i] = (char *)malloc(30*sizeof(char));
+    while(fgets(dict[i], 30, d) != NULL) //***that 30 needs to be fixed...
     {
-	dict[i] = d;	
 	i++;
-	d = (char *)malloc(30*sizeof(char));
+	dict[i] = (char *)malloc(30*sizeof(char));
     }
-    dict[i]='0';
     // NULL termination. Last entry in the array should be NULL. *outside loop*
+    dict[i]='\0';
 
     printf("Done\n");
 
@@ -89,4 +89,10 @@ int main(int argc, char *argv[])
 
     // For each hash, try every entry in the dictionary.
     // Print the matching dictionary entry.
+    while(i<4)
+    {
+	char *m=crack(hashes[i],&dictionary[i]);
+	printf("%s", m[i]);
+	i++;
+    }
 }
